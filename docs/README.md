@@ -1,0 +1,92 @@
+# Journey Wise API
+![Image description]('public/css/shroom.jpg')
+
+
+## Description
+
+Entheogens are defined as chemical substances, usually from plants, that produce non-ordinary states of consciousness upon ingestion for religious or spiritual purposes. These substances are sometimes referred to as "psychedelics" as well as "sacred plant medicines." Outdated research and experimentation from the 1950s, 60s, and 70s comprises a considerable amount of what both scientists and the general public think they know about the potential risks of entheogenic/psychedelic  substance use. Unfortunately, this body of knowledge includes studies that wouldn’t meet today’s scientific standards and many stem from urban legends as well as sensational, unsubstantiated news stories. Sacred plant medicines are regarded as highly beneficial to many indigenous cultures throughout the world and psychedelics are used to enhance people’s experience of their own consciousness and awareness. Do to the stigmatization and marginalization of individuals and groups who use these substances, many people use them in uninformed, risky, and dangerous ways because of their fear of judgement and intolerance. This api provides valuable information about these substances, including dosages and applications in order create a healing culture of acceptance in mainstream culture around the potentially beneficial nature of use of these substances and indigenous healing modalities.
+
+
+## Installation
+
+To install this API, clone the repo, open terminal and run this command in that directory.
+
+```bash
+npm install
+```
+
+Then run:
+
+```bash
+npm start
+```
+
+# How to Make Requests
+
+## Get all entheogens
+
+Send a GET request to URL `localhost:3000/entheogens` to get a list of all entheogens.
+
+Data will look lke:
+```json
+[
+    {
+        name: "Mushrooms",
+        psychoactive chemical: "psilocybin",
+        dosage: "1-5 grams",
+        healing uses: "PTSD, depression, obsessive-compulsive disorder, quitting smoking, drug and alcohol addiction, cluster headaches, and cancer-related or other end-of-life psychological distress"
+    }
+    {
+        name: "Ayahuasca",
+        plant source: "Banisteriopsis caapi and Psychotria viridis",
+        active chemical: "DMT",
+        dosage: "",
+        healing applications: "suicide prevention, depression, anxiety, panic and symptoms related to trauma, drug and alcohol addiction treatment"
+    }
+]
+```
+
+## Get a specific entheogen by id
+
+Send a GET request to URL `localhost:3000/entheogens/ID_HERE` to get a single dog
+
+Data will look like:
+```json
+[
+        name: "Mushrooms",
+        psychoactive chemical: "psilocybin",
+        dosage: "1-5 grams",
+        healing applications: "PTSD, depression, obsessive-compulsive disorder, quitting smoking, drug and alcohol addiction, cluster headaches, and cancer-related or other end-of-life psychological distress"
+        _id: 123456789
+    }
+]
+```
+
+## Add an entheogen
+
+Send a POST request to URL `/entheogens/` with the following info:
+
+```
+name: string,
+psychoactive chemical: string,
+dosage: string,
+healing applications: string,
+```
+
+## Remove an entheogen
+
+Send a DELETE request to `http://localhost:3000/entheogens?_method=DELETE` with the following info:
+
+```
+id: string,
+psychoactive chemical: string,
+dosage: string,
+healing applications: string,
+```
+
+## Edit entheogen's info
+
+Send a PUT request to `http://localhost:3000/entheogens?_method=PUT` with the following info:
+```
+id: String
+**```**
