@@ -92,3 +92,19 @@ Send a PUT request to `http://localhost:3000/entheogens?_method=PUT` with the fo
 ```
 id: string
 ```
+
+# Authentication
+
+## Login
+
+To log in, send a POST request to `http://localhost:3000/login`
+
+Use these headers with these data types:
+```
+username: string,
+password: password
+```
+
+## Logout
+
+Send a GET request to `http://localhost:3000/logout`
