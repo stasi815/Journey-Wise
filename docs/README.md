@@ -95,6 +95,14 @@ id: string
 
 # Authentication
 
+## Sign Up
+
+Send a POST request to `http://localhost:3000/sign-up` with the following info:
+```
+username: string,
+password: password
+```
+
 ## Login
 
 To log in, send a POST request to `http://localhost:3000/login`
