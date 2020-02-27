@@ -1,5 +1,5 @@
 # Journey Wise API
-![Image description]('public/css/shroom.jpg')
+![Image description](https://images.unsplash.com/photo-1528518290605-1fcc8dcca204?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60)
 
 
 ## Description
@@ -88,5 +88,5 @@ healing applications: string,
 
 Send a PUT request to `http://localhost:3000/entheogens?_method=PUT` with the following info:
 ```
-id: String
-**```**
+id: string
+```
