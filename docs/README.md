@@ -1,6 +1,7 @@
 # Journey Wise API
 ![Image description](https://images.unsplash.com/photo-1528518290605-1fcc8dcca204?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60)
 
+This API allows authenticated users to post much needed information about entheogenic substances so that others have access to valid, pertinent and vital information before they ingest these substances.
 
 ## Description
 
@@ -53,6 +54,7 @@ Send a GET request to URL `localhost:3000/entheogens/ID_HERE` to get a single do
 Data will look like:
 ```json
 [
+    {
         name: "Mushrooms",
         psychoactive chemical: "psilocybin",
         dosage: "1-5 grams",
