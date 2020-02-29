@@ -12,7 +12,7 @@ const EntheogenSchema = new Schema({
   healingApplications: { type: String},
 });
 
-EntheogenSchema.pre('save', (next) => {
+EntheogenSchema.pre('save', function(next) {
   // createdAt and updatedAt
   const now = new Date()
   this.updatedAt = now;
