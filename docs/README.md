@@ -50,7 +50,7 @@ Data will look lke:
 
 ## Get a specific entheogen by id
 
-Send a GET request to URL `localhost:3000/entheogens/ID_HERE` to get a single dog
+Send a GET request to URL `localhost:3000/entheogens/ID_HERE` to get a single entheogen
 
 Data will look like:
 ```json
