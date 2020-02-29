@@ -1,4 +1,4 @@
-const app = require("../index.js");
+const app = require("../server.js");
 const mongoose = require('mongoose');
 const chai = require('chai'); // eslint-disable-line import/newline-after-import
 const chaiHttp = require("chai-http");
@@ -18,18 +18,6 @@ after((done) => {
   done();
 });
 
-describe('## Thing APIs', () => {
-  // TODO: Implement more tests.
-
-  it('should load homepage', () => {
-    chai.request(app)
-      .get('/api/thing')
-      .end((err, res) => {
-        if (err) {
-          return done(err);
-        }
-        res.status.should.be.equal(200);
-        return done();
-      })
-  })
+describe('## Auth', () => {
+  // TODO: Implement tests.
 });

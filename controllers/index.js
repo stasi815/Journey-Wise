@@ -1,12 +1,12 @@
 const express = require('express');
-const thingRoutes = require('./thing.js');
+const entheogenRoutes = require('./entheogens.js');
 const authRoutes = require('./auth.js');
 
 const router = express.Router(); // eslint-disable-line new-cap
 
 // TODO: Change to your model.
 
-router.use('/thing', thingRoutes);
+router.use('/entheogen', entheogenRoutes);
 
 router.use('/auth', authRoutes);
 

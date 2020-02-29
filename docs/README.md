@@ -33,15 +33,16 @@ Data will look lke:
 [
     {
         name: "Mushrooms",
+        plant source: "Psilocybe cubensis",
         psychoactive chemical: "psilocybin",
         dosage: "1-5 grams",
-        healing uses: "PTSD, depression, obsessive-compulsive disorder, quitting smoking, drug and alcohol addiction, cluster headaches, and cancer-related or other end-of-life psychological distress"
+        healing applications: "PTSD, depression, obsessive-compulsive disorder, quitting smoking, drug and alcohol addiction, cluster headaches, and cancer-related or other end-of-life psychological distress"
     }
     {
         name: "Ayahuasca",
         plant source: "Banisteriopsis caapi and Psychotria viridis",
-        active chemical: "DMT",
-        dosage: "",
+        psychoactive chemical: "DMT",
+        dosage: ".25-1.5 ounces",
         healing applications: "suicide prevention, depression, anxiety, panic and symptoms related to trauma, drug and alcohol addiction treatment"
     }
 ]
@@ -56,6 +57,7 @@ Data will look like:
 [
     {
         name: "Mushrooms",
+        plant source: "Psilocybe cubensis",
         psychoactive chemical: "psilocybin",
         dosage: "1-5 grams",
         healing applications: "PTSD, depression, obsessive-compulsive disorder, quitting smoking, drug and alcohol addiction, cluster headaches, and cancer-related or other end-of-life psychological distress"
@@ -70,6 +72,7 @@ Send a POST request to URL `/entheogens/` with the following info:
 
 ```
 name: string,
+plant source: string,
 psychoactive chemical: string,
 dosage: string,
 healing applications: string,
@@ -81,6 +84,8 @@ Send a DELETE request to `http://localhost:3000/entheogens?_method=DELETE` with 
 
 ```
 id: string,
+name: string,
+plant source: string,
 psychoactive chemical: string,
 dosage: string,
 healing applications: string,

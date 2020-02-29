@@ -3,8 +3,11 @@ const util = require('util');
 
 require('dotenv').config();
 
+// Set db
+require('./data/journey-wise-db');
+
 const app = require('./config/express');
-const router = require('./controllers/thing.js');
+const router = require('./controllers/entheogens.js');
 
 mongoose.Promise = Promise;
 
@@ -25,11 +28,14 @@ app.use(router);
 
 // module.parent check is required to support mocha watch
 // src: https://github.com/mochajs/mocha/issues/1912
-if (!module.parent) {
-  // listen on port config.port
-  app.listen(process.env.PORT, () => {
-    console.info(`server started on port ${process.env.PORT} (${process.env.NODE_ENV})`); // eslint-disable-line no-console
-  });
-}
+// if (!module.parent) {
+//   // listen on port config.port
+//   app.listen(process.env.PORT, () => {
+//     console.info(`server started on port ${process.env.PORT} (${process.env.NODE_ENV})`); // eslint-disable-line no-console
+//   });
+// }
+app.listen(3000, () =>
+  console.log(`Example app listening on port ${process.env.PORT}!`),
+);
 
 module.exports = app;
