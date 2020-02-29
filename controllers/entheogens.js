@@ -33,5 +33,15 @@ router.post('/create', (req,res) => {
   res.send('entheogen created');
 })
 
+//GET one entheogen
 
+router.get("/entheogens/:id", (req, res) => {
+  Entheogen.findById(req.params.id)
+    .then(entheogen => 
+      res.send({ entheogen }))
+    .catch(err => {
+      console.log(err.message);
+    });
+    
+});
 module.exports = router;
