@@ -3,20 +3,24 @@ const Schema = mongoose.Schema;
 
 
 const EntheogenSchema = new Schema({
+  createdAt: { type: Date },
+  updatedAt: { type: Date },
   name: { type: String },
-  "plant source": { type: String},
-  "psychoactive chemical": { type: String },
+  plantSource: { type: String},
+  psychoactiveChemical: { type: String },
   dosage: { type: String },
-  "healing applications": { type: String},
+  healingApplications: { type: String},
 });
 
 EntheogenSchema.pre('save', (next) => {
   // createdAt and updatedAt
   const now = new Date()
-  this.updatedAt = now
+  this.updatedAt = now;
+
   if (!this.createdAt) {
     this.createdAt = now
-  };
+  }
+
   next();
 });
 

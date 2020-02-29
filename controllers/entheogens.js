@@ -5,7 +5,7 @@ const Entheogen = require('../models/entheogen.js');
 const router = express.Router(); // eslint-disable-line new-cap
 
 // GET /api/entheogen
-router.get('/', (req, res) => {
+router.get('/entheogens', (req, res) => {
   Entheogen.find()
   .then(entheogens => {
     res.send({ entheogens });
