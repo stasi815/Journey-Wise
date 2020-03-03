@@ -1,45 +1,42 @@
 const express = require('express');
 
 const Entheogen = require('../models/entheogen');
+const User = require('../models/user');
 
 const router = express.Router(); // eslint-disable-line new-cap
 
 // GET /api/entheogen
 router.get('/', (req, res) => {
-  if (!req.user) {
+  const currentUser = req.user;
+
+  if (!currentUser) {
     res.send({ err:"Must be logged in" })
   } else {
     Entheogen.find()
-    .then(entheogens => {
-      res.send({ entheogens });
-    }).catch(err => {
-      console.log(err.message);
-    });
-  }
+      .then(entheogens => {
+        res.send({ entheogens, currentUser });
+      })
+      .catch(err => {
+        console.log(err.message);
+      });
+    }
 })
 
-// router.get('/create_form', (req, res) => {
-//   res.send(`
-//     <form action='create' method='post'>
-//       Entheogen Name: <input type='text' name='entheogenName'>
-//       <br>Plant Source: <input type='text' name='plantSource'>
-//       <br>Psychoactive chemical: <input type='text' name='psychoactiveChemical'>
-//       <br>Dosage: <input type='text' name='dosage'>
-//       <br>Healing Applications: <input type='text' name='healingApplications'>
-//       <br><input type='submit' value='Submit!'>
-//     </form>
-//   `)
-// })
-
 // POST new entheogen.
-router.post('/', (req,res) => {
+router.post('/new', (req,res) => {
   if (!req.user) {
     res.send({ err:"Must be logged in" })
   } else {
     const entheogen = new Entheogen(req.body);
-    entheogen.save();
-    res.send('entheogen created');
-    }
+    entheogen
+    .save()
+      .then(function(err, entheogen) {
+        res.send('entheogen created');
+        })
+    .catch(err => {
+      console.log(err.message);
+    });
+  }
 });
 
 

@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const chai = require('chai'); // eslint-disable-line import/newline-after-import
 const chaiHttp = require("chai-http");
 const expect = chai.expect;
+const agent = chai.request.agent(app);
 
 // Import Entheogen model
 const Entheogen = require('../models/entheogen');
@@ -25,7 +26,7 @@ after((done) => {
 });
 
 describe("Entheogens", function() {
-  const agent = chai.request.agent(server);
+  // const agent = chai.request.agent(server);
   //Test Entheogen
   const newEntheogen = {
     name: 'Test Enth',
@@ -35,13 +36,13 @@ describe("Entheogens", function() {
     healingApplications: 'Test applications'
   };
   // Describe what you are testing
-  it("should create with valid attributes at POST /create", function(done) {
+  it("should create with valid attributes at POST /new", function(done) {
     // Checks how many posts there are now
     Entheogen.estimatedDocumentCount()
       .then(function (initialDocCount) {
-          chai
-              .request(app)
-              .post("/create")
+          agent
+              // .request(app)
+              .post("/entheogens/new")
               // This line fakes a form post,
               // since we're not actually filling out a form
               .set("content-type", "application/x-www-form-urlencoded")
@@ -50,9 +51,9 @@ describe("Entheogens", function() {
               .then(function (res) {
                 Entheogen.estimatedDocumentCount()
                       .then(function (newDocCount) {
-                          // Check that the database has one more post in it
+                          // Check that the database has one more entheogens in it
                           expect(res).to.have.status(200);
-                          // Check that the database has one more post in it
+                          // Check that the database has one more entheogens in it
                           expect(newDocCount).to.be.equal(initialDocCount + 1)
                           done();
                       })

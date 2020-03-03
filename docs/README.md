@@ -26,7 +26,7 @@ npm start
 
 ## Get all entheogens
 
-Send a GET request to URL `localhost:3000/entheogens` to get a list of all entheogens.
+Send a GET request to URL `localhost:3000/entheogens?token=<YOUR_TOKEN>` to get a list of all entheogens.
 
 Data will look lke:
 ```json
