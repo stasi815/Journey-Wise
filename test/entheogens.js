@@ -5,8 +5,9 @@ const chaiHttp = require("chai-http");
 const expect = chai.expect;
 const agent = chai.request.agent(app);
 
-// Import Entheogen model
+// Import Entheogen and User models
 const Entheogen = require('../models/entheogen');
+const User = require("./../models/user");
 const server = require('../server');
 
 chai.config.includeStack = true;
@@ -17,6 +18,7 @@ chai.use(chaiHttp);
 /**
  * root level hooks
  */
+
 after((done) => {
   // required because https://github.com/Automattic/mongoose/issues/1251#issuecomment-65793092
   mongoose.models = {};
@@ -26,22 +28,42 @@ after((done) => {
 });
 
 describe("Entheogens", function() {
-  // const agent = chai.request.agent(server);
   //Test Entheogen
   const newEntheogen = {
+
     name: 'Test Enth',
     plantSource: 'Test Source',
     psychoactiveChemical: 'Test chemical',
     dosage: 'Test dosage',
     healingApplications: 'Test applications'
+
   };
+    // User we'll use for testing
+    const user = {
+      username: 'enthstest',
+      password: 'testenths'
+  };
+
+  // before hook to sign up the test User
+  before(function (done) {
+    agent
+        .post('/sign-up')
+        // .set("content-type", "application/x-www-form-urlencoded")
+        .send(user)
+        .then(function (res) {
+        done();
+        })
+        .catch(function (err) {
+        done(err);
+        });
+    });
+
   // Describe what you are testing
-  it("should create with valid attributes at POST /new", function(done) {
-    // Checks how many posts there are now
+  it("should create with valid attributes at POST entheogens/new", function(done) {
+    // Checks how many entheogens there are now
     Entheogen.estimatedDocumentCount()
       .then(function (initialDocCount) {
           agent
-              // .request(app)
               .post("/entheogens/new")
               // This line fakes a form post,
               // since we're not actually filling out a form
@@ -68,9 +90,26 @@ describe("Entheogens", function() {
       .catch(function (err) {
           done(err);
       });
+    });
 
-    after(function () {
-      Entheogen.findOneAndDelete(newEntheogen);
-  });
-});
+
+      after(function (done) {
+        Entheogen.findOneAndDelete(newEntheogen)
+        .then(function (res) {
+            agent.close()
+
+            User.findOneAndDelete({
+                username: user.username
+            })
+                .then(function (res) {
+                    done()
+                })
+                .catch(function (err) {
+                    done(err);
+                });
+        })
+        .catch(function (err) {
+            done(err);
+        });
+    });
 });

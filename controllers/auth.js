@@ -14,7 +14,7 @@ router.post('/sign-up', (req, res) => {
         .then(user => {
         const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, { expiresIn: "60 days" });
         // res.cookie('jwttoken', token, { maxAge: 900000, httpOnly: true });
-        res.json({'jwttoken': token})
+        res.json({'token': token})
         })
         .catch(err => {
             console.log(err.message);
