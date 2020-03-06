@@ -24,18 +24,22 @@ router.get('/', (req, res) => {
 })
 
 // POST new tribe.
-router.post('/entheogens/:entheogenID/tribe', (req,res) => {
+router.post('/', (req,res) => {
   if (!req.user) {
     res.send({ err:"Must be logged in" })
   } else {
     const tribe = new Tribe(req.body);
     tribe
     .save()
-      .then(function(err, tribe) {
-        res.send('tribe created');
-        })
-    .catch(err => {
-      console.log(err.message);
+    .then(function(err, tribe) {
+      res.send('tribe created');
+      })
+      .then(entheogen => {
+        entheogen.push(tribe)
+        entheogen.save();
+        res.json(entheogen)
+      }).catch(err => {
+        console.log(err.message);
     });
   }
 });
