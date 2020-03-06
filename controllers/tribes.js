@@ -4,8 +4,7 @@ const Entheogen = require('../models/entheogen');
 const User = require('../models/user');
 const Tribe = require('../models/tribe')
 
-const router = express.Router(); // eslint-disable-line new-cap
-
+const router = express.Router({ mergeParams: true });
 // GET /api/tribe
 router.get('/', (req, res) => {
   const currentUser = req.user;
