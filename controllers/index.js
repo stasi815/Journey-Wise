@@ -1,7 +1,7 @@
 const express = require('express');
 const entheogenRoutes = require('./entheogens');
 const authRoutes = require('./auth');
-const tribeRoutes = require('./tribe');
+const tribeRoutes = require('./tribes');
 
 const router = express.Router(); // eslint-disable-line new-cap
 
