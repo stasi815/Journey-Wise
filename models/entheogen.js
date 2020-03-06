@@ -10,6 +10,7 @@ const EntheogenSchema = new Schema({
   psychoactiveChemical: { type: String },
   dosage: { type: String },
   healingApplications: { type: String},
+  tribes: [{ type: mongoose.Schema.Types.ObjectId, ref: "Tribe" }]
 });
 
 EntheogenSchema.pre('save', function(next) {

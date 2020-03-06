@@ -36,7 +36,7 @@ Postman is a very powerful HTTP client that is used for testing, documenting and
 
 ## Get all entheogens
 
-Send a GET request to URL `localhost:3000/entheogens/` to get a list of all entheogens.
+Send a GET request to URL `https://journeywise-amg.herokuapp.com/entheogens/` to get a list of all entheogens.
 
 Data will look lke:
 ```json
@@ -60,7 +60,7 @@ Data will look lke:
 
 ## Get a specific entheogen by id
 
-Send a GET request to URL `localhost:3000/entheogens/ID_HERE` to get a single entheogen
+Send a GET request to URL `https://journeywise-amg.herokuapp.com/entheogens/ID_HERE` to get a single entheogen
 
 Data will look like:
 ```json
@@ -81,7 +81,7 @@ Data will look like:
 
 ## Add an entheogen
 
-Send a POST request to URL `/entheogens/` with the key-value pairs in the Body:
+Send a POST request to URL `https://journeywise-amg.herokuapp.com/entheogens/` with the key-value pairs in the Body:
 
 ```
 name: string,
@@ -93,7 +93,7 @@ healingApplications: string,
 
 ## Remove an entheogen
 
-Send a DELETE request to `http://localhost:3000/entheogens/ID_HERE/delete` 
+Send a DELETE request to `https://journeywise-amg.herokuapp.com/entheogens/ID_HERE/delete`
 
 Your response will be:
 ```
@@ -102,7 +102,7 @@ entheogen deleted
 
 ## Edit entheogen's info
 
-Send a PUT request to `http://localhost:3000/entheogens/ID_HERE/put` with the updates that you'd like to make to the following data fields:
+Send a PUT request to `https://journeywise-amg.herokuapp.com/entheogens/ID_HERE/put` with the updates that you'd like to make to the following data fields:
 
 ```
 name: string,
@@ -116,7 +116,7 @@ healingApplications: string
 
 ## Sign Up
 
-Send a POST request to `http://localhost:3000/auth/sign-up` with the following info:
+Send a POST request to `https://journeywise-amg.herokuapp.com/auth/sign-up` with the following info:
 ```
 username: string,
 password: password
@@ -124,7 +124,7 @@ password: password
 
 ## Login
 
-To log in, send a POST request to `http://localhost:3000/auth/login`
+To log in, send a POST request to `https://journeywise-amg.herokuapp.com/auth/login`
 
 Use these headers with these data types:
 ```
@@ -134,4 +134,4 @@ password: password
 
 ## Logout
 
-Send a GET request to `http://localhost:3000/auth/logout`
+Send a GET request to `https://journeywise-amg.herokuapp.com/auth/logout`
