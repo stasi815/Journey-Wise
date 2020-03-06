@@ -16,7 +16,7 @@ entheogenRoutes.use('./:entheogenID/tribe', function(req, res, next) {
     req.entheogenID = req.params.entheogenID;
 }, tribeRoutes);
 
-tribeRoutes.get('/:tribeID/', function(req, res, next) {
+tribeRoutes.use('/:tribeID', function(req, res, next) {
     let entheogenID = req.entheogenID;
     let tribeID = req.params.tribeID;
 

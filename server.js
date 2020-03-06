@@ -1,7 +1,7 @@
 // Heroku Deployment
 const mongoose = require('mongoose');
-const mongo_uri = process.env.MONGODB_URI
-mongoose.connect('mongo_uri')
+const mongo_uri = process.env.MONGODB_URI;
+mongoose.connect('mongo_uri');
 
 const port = process.env.PORT
 
@@ -16,7 +16,10 @@ require('dotenv').config();
 // Set db
 require('./data/journey-wise-db');
 
+// App Setup
 const app = require('./config/express');
+
+// Routes
 const router = require('./controllers/index');
 
 app.use(cookieParser());
@@ -61,15 +64,18 @@ app.use('/', router);
 // src: https://github.com/mochajs/mocha/issues/1912
 // if (!module.parent) {
 //   // listen on port config.port
-//   app.listen(process.env.PORT, () => {
-//     console.info(`server started on port ${process.env.PORT} (${process.env.NODE_ENV})`); // eslint-disable-line no-console
-//   });
+  // app.listen(process.env.PORT, () => {
+  //   console.info(`server started on port ${process.env.PORT} (${process.env.NODE_ENV})`); // eslint-disable-line no-console
+  // });
 // }
 
 module.exports = app;
 
 // Start Server
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+app.listen(process.env.PORT, () => {
+  console.info(`server started on port ${process.env.PORT} (${process.env.NODE_ENV})`); // eslint-disable-line no-console
+});
+// app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 
 // app.listen(3000, () =>
 //   console.log(`Example app listening on port 3000!`),
