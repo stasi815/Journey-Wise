@@ -1,4 +1,9 @@
+// Heroku Deployment
 const mongoose = require('mongoose');
+const mongo_uri = process.env.MONGODB_URI
+mongoose.connect(mongo_uri)
+
+const port = process.env.PORT
 
 // Auth requirements
 const cookieParser = require('cookie-parser');
@@ -19,15 +24,16 @@ app.use(cookieParser());
 mongoose.Promise = Promise;
 
 // connect to mongo db
-const mongoUri = process.env.MONGO_HOST;
-mongoose.connect(
-  mongoUri,
-  { server: { socketOptions: { keepAlive: 1 } } }
-);
-mongoose.connection.on('error', () => {
-  throw new Error(`unable to connect to database: ${mongoUri}`);
-});
+// const mongoUri = process.env.MONGO_HOST;
+// mongoose.connect(
+//   mongoUri,
+//   { server: { socketOptions: { keepAlive: 1 } } }
+// );
+// mongoose.connection.on('error', () => {
+//   throw new Error(`unable to connect to database: ${mongoUri}`);
+// });
 
+// checkAuth middleware
 const checkAuth = (req, res, next) => {
   console.log("---------")
   console.log(req.headers.token);
@@ -62,7 +68,10 @@ app.use('/', router);
 
 module.exports = app;
 
-app.listen(3000, () =>
-  console.log(`Example app listening on port 3000!`),
-);
+// Start Server
+app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+
+// app.listen(3000, () =>
+//   console.log(`Example app listening on port 3000!`),
+// );
 

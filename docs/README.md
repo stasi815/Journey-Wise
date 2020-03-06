@@ -1,7 +1,7 @@
 # Journey Wise API
 ![Image description](https://images.unsplash.com/photo-1528518290605-1fcc8dcca204?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60)
 
-This API allows authenticated users to post much needed information about entheogenic substances so that others have access to valid, pertinent and vital information before they ingest these substances.
+This API allows authenticated users to access and post much needed information about entheogenic substances so that others have access to valid, pertinent and vital information before they ingest these substances.
 
 ## Description
 
@@ -22,11 +22,21 @@ Then run:
 npm start
 ```
 
-# How to Make Requests
+# How to Make Requests Using Postman
+
+Postman:
+Postman is a very powerful HTTP client that is used for testing, documenting and developing APIs.
+
+1- Install Postman from their website.
+2- Create an account
+3- Once you've signed-up for an account for this API (authentication process outlined below), copy and paste your authenticated token into the Header in Postman in order to CRUD a resource
+3- Make the corresponding requests that match the action that you're taking with the routes provided
+4- Add the appropriate values into the data keys in the Body to CREATE or UPDATE a resource
+5- Enjoy!
 
 ## Get all entheogens
 
-Send a GET request to URL `localhost:3000/entheogens?token=<YOUR_TOKEN>` to get a list of all entheogens.
+Send a GET request to URL `localhost:3000/entheogens/` to get a list of all entheogens.
 
 Data will look lke:
 ```json
@@ -56,19 +66,22 @@ Data will look like:
 ```json
 [
     {
-        name: "Mushrooms",
-        plantSource: "Psilocybe cubensis",
-        psychoactiveChemical: "psilocybin",
-        dosage: "1-5 grams",
-        healingApplications: "PTSD, depression, obsessive-compulsive disorder, quitting smoking, drug and alcohol addiction, cluster headaches, and cancer-related or other end-of-life psychological distress"
-        _id: 123456789
+        "_id": "5e5dac35c27f10da13743f17",
+        "name":"Mushrooms",
+        "plantSource": "Psilocybe cubensis",
+        "psychoactiveChemical": "psilocybin",
+        "dosage": "1-5 grams",
+        "healingApplications": "PTSD, depression, obsessive-compulsive disorder, quitting smoking, drug and alcohol addiction, cluster headaches, and cancer-related or other end-of-life psychological distress",
+        "updatedAt": "2020-03-03T01:00:37.557Z",
+        "createdAt": "2020-03-03T01:00:37.557Z",
+        "__v": 0
     }
 ]
 ```
 
 ## Add an entheogen
 
-Send a POST request to URL `/entheogens/` with the following info:
+Send a POST request to URL `/entheogens/` with the key-value pairs in the Body:
 
 ```
 name: string,
@@ -80,29 +93,30 @@ healingApplications: string,
 
 ## Remove an entheogen
 
-Send a DELETE request to `http://localhost:3000/entheogens?_method=DELETE` with the following info:
+Send a DELETE request to `http://localhost:3000/entheogens/ID_HERE/delete` 
 
+Your response will be:
 ```
-id: string,
-name: string,
-plantSource: string,
-psychoactiveChemical: string,
-dosage: string,
-healingApplications: string,
+entheogen deleted
 ```
 
 ## Edit entheogen's info
 
-Send a PUT request to `http://localhost:3000/entheogens?_method=PUT` with the following info:
+Send a PUT request to `http://localhost:3000/entheogens/ID_HERE/put` with the updates that you'd like to make to the following data fields:
+
 ```
-id: string
+name: string,
+plantSource: string,
+psychoactiveChemical: string,
+dosage: string,
+healingApplications: string
 ```
 
 # Authentication
 
 ## Sign Up
 
-Send a POST request to `http://localhost:3000/sign-up` with the following info:
+Send a POST request to `http://localhost:3000/auth/sign-up` with the following info:
 ```
 username: string,
 password: password
@@ -110,7 +124,7 @@ password: password
 
 ## Login
 
-To log in, send a POST request to `http://localhost:3000/login`
+To log in, send a POST request to `http://localhost:3000/auth/login`
 
 Use these headers with these data types:
 ```
@@ -120,4 +134,4 @@ password: password
 
 ## Logout
 
-Send a GET request to `http://localhost:3000/logout`
+Send a GET request to `http://localhost:3000/auth/logout`
