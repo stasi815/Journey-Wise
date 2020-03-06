@@ -1,31 +1,18 @@
-// Heroku Deployment
-const mongoose = require('mongoose');
-const mongo_uri = process.env.MONGODB_URI;
-mongoose.connect('mongo_uri');
-
+require('dotenv').config();
 const port = process.env.PORT
-
 // Auth requirements
 const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
-
 const util = require('util');
-
-require('dotenv').config();
-
 // Set db
 require('./data/journey-wise-db');
-
 // App Setup
 const app = require('./config/express');
-
 // Routes
 const router = require('./controllers/index');
 
 app.use(cookieParser());
-
-mongoose.Promise = Promise;
-
+// mongoose.Promise = Promise;
 // connect to mongo db
 // const mongoUri = process.env.MONGO_HOST;
 // mongoose.connect(
@@ -35,7 +22,6 @@ mongoose.Promise = Promise;
 // mongoose.connection.on('error', () => {
 //   throw new Error(`unable to connect to database: ${mongoUri}`);
 // });
-
 // checkAuth middleware
 const checkAuth = (req, res, next) => {
   console.log("---------")
@@ -54,30 +40,16 @@ const checkAuth = (req, res, next) => {
   // callback to what was supposed to happen before each route is called; middleware; says, this piece of middleware is finished so you can move on; wouldn't run the next route without this piece; makes it so that we don't go on until that asynchronous process is finished
     next();
 };
-
 app.use(checkAuth);
-
 // Routes
 app.use('/', router);
 
-// module.parent check is required to support mocha watch
-// src: https://github.com/mochajs/mocha/issues/1912
-// if (!module.parent) {
-//   // listen on port config.port
-  // app.listen(process.env.PORT, () => {
-  //   console.info(`server started on port ${process.env.PORT} (${process.env.NODE_ENV})`); // eslint-disable-line no-console
-  // });
-// }
-
 module.exports = app;
-
 // Start Server
 app.listen(process.env.PORT, () => {
   console.info(`server started on port ${process.env.PORT} (${process.env.NODE_ENV})`); // eslint-disable-line no-console
 });
 // app.listen(port, () => console.log(`Example app listening on port ${port}!`))
-
 // app.listen(3000, () =>
 //   console.log(`Example app listening on port 3000!`),
 // );
-
