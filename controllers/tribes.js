@@ -85,14 +85,32 @@ router.delete("/:id/delete", (req, res) => {
   if (!req.user) {
     res.send({ err: 'Must be logged in' })
   } else {
-    Tribe.findByIdAndRemove(req.params.id)
-      .then(function(err, tribe) {
-        res.send('tribe deleted');
-        })
+    Tribe.deleteOne( {_id: req.params.id} )
+    .then(function(err, tribe) {
+      res.send('Entry deleted');
+      })
     .catch(err => {
       console.log(err.message);
     });
   }
 });
+    // let id = req.entheogenId;
+
+    // Tribe.findByIdAndRemove(req.params.id)
+    //   .then(function(err, tribe) {
+    //     res.send('tribe deleted');
+    //     })
+    //     .then(() => {
+    //       return Entheogen.findOne({ id: id });
+    //     }).then(entheogen => {
+    //       entheogen.tribes.findByIdAndRemove(tribe)
+    //       entheogen.save()
+    //       res.json(entheogen)
+    //     })
+    // .catch(err => {
+    //   console.log(err.message);
+    // });
+  // }
+// });
 
 module.exports = router;
