@@ -94,23 +94,5 @@ router.delete("/:id/delete", (req, res) => {
     });
   }
 });
-    // let id = req.entheogenId;
-
-    // Tribe.findByIdAndRemove(req.params.id)
-    //   .then(function(err, tribe) {
-    //     res.send('tribe deleted');
-    //     })
-    //     .then(() => {
-    //       return Entheogen.findOne({ id: id });
-    //     }).then(entheogen => {
-    //       entheogen.tribes.findByIdAndRemove(tribe)
-    //       entheogen.save()
-    //       res.json(entheogen)
-    //     })
-    // .catch(err => {
-    //   console.log(err.message);
-    // });
-  // }
-// });
 
 module.exports = router;
