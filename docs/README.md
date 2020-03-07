@@ -42,18 +42,20 @@ Data will look lke:
 ```json
 [
     {
-        name: "Mushrooms",
-        plant source: "Psilocybe cubensis",
-        psychoactiveChemical: "psilocybin",
-        dosage: "1-5 grams",
-        healingApplications: "PTSD, depression, obsessive-compulsive disorder, quitting smoking, drug and alcohol addiction, cluster headaches, and cancer-related or other end-of-life psychological distress"
+        "tribes": [],
+        "name": "Mushrooms",
+        "plant source": "Psilocybe cubensis",
+        "psychoactiveChemical": "psilocybin",
+        "dosage": "1-5 grams",
+        "healingApplications": "PTSD, depression, obsessive-compulsive disorder, quitting smoking, drug and alcohol addiction, cluster headaches, and cancer-related or other end-of-life psychological distress"
     }
     {
-        name: "Ayahuasca",
-        plantSource: "Banisteriopsis caapi and Psychotria viridis",
-        psychoactiveChemical: "DMT",
-        dosage: ".25-1.5 ounces",
-        healingApplications: "suicide prevention, depression, anxiety, panic and symptoms related to trauma, drug and alcohol addiction treatment"
+        "tribes": [],
+        "name": "Ayahuasca",
+        "plantSource": "Banisteriopsis caapi and Psychotria viridis",
+        "psychoactiveChemical": "DMT",
+        "dosage": ".25-1.5 ounces",
+        "healingApplications": "suicide prevention, depression, anxiety, panic and symptoms related to trauma, drug and alcohol addiction treatment"
     }
 ]
 ```
@@ -67,6 +69,7 @@ Data will look like:
 [
     {
         "_id": "5e5dac35c27f10da13743f17",
+        "tribes":[],
         "name":"Mushrooms",
         "plantSource": "Psilocybe cubensis",
         "psychoactiveChemical": "psilocybin",
@@ -112,6 +115,80 @@ dosage: string,
 healingApplications: string
 ```
 
+## Get all tribes
+Send a GET request to URL `https://journeywise-amg.herokuapp.com/entheogens/entheogenID_HERE/tribe` to get a list of all tribes.
+
+Data will look lke:
+```json
+[
+
+    {
+        "tribe": {
+        "_id": "5e6318149e610b000419a20b",
+        "region": "Acre, Brasil",
+        "name": "Huni Kuin",
+        "updatedAt": "2020-03-07T03:42:12.657Z",
+        "createdAt": "2020-03-07T03:42:12.657Z",
+        "__v": 0
+        }
+    }
+    {
+        "tribe": {
+        "_id": "5e6318149e610b000419a20b",
+        "region": "Amazonia, Brasil",
+        "name": "Yawanawa",
+        "updatedAt": "2020-03-07T03:42:12.657Z",
+        "createdAt": "2020-03-07T03:42:12.657Z",
+        "__v": 0
+        }
+    }
+]
+```
+## Add a tribe
+
+Send a POST request to URL `https://journeywise-amg.herokuapp.com/entheogens/entheogenID_HERE/tribe/new` with the key-value pairs in the Body:
+
+```
+name: string,
+region: string,
+```
+
+## Get one tribe
+Send a GET request to URL `https://journeywise-amg.herokuapp.com/entheogens/entheogenID_HERE/tribe/tribeID_HERE` to get one tribe.
+
+Data will look lke:
+```json
+[
+
+    {
+        "tribe": {
+        "_id": "5e6318149e610b000419a20b",
+        "region": "Acre, Brasil",
+        "name": "Huni Kuin",
+        "updatedAt": "2020-03-07T03:42:12.657Z",
+        "createdAt": "2020-03-07T03:42:12.657Z",
+        "__v": 0
+        }
+    }
+
+]
+```
+## Edit one tribe's info
+
+Send a PUT request to `https://journeywise-amg.herokuapp.com/entheogens/entheogenID_HERE/tribe/tribeID_HERE/put` with the updates that you'd like to make to the following data fields:
+
+```
+name: string,
+region: string,
+```
+## Remove one tribe
+
+Send a DELETE request to `https://journeywise-amg.herokuapp.com/entheogens/entheogenID_HERE/tribe/tribeID_HERE/delete`
+
+Your response will be:
+```
+Entry deleted
+```
 # Authentication
 
 ## Sign Up
@@ -126,7 +203,7 @@ password: password
 
 To log in, send a POST request to `https://journeywise-amg.herokuapp.com/auth/login`
 
-Use these headers with these data types:
+Use these fields in the Body with these data with your unique token in the Headers:
 ```
 username: string,
 password: password
