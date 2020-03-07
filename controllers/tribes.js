@@ -28,16 +28,19 @@ router.post('/new', (req,res) => {
   if (!req.user) {
     res.send({ err:"Must be logged in" })
   } else {
+    // Instantiate model instance
     const tribe = new Tribe(req.body);
-    tribe.entheogen = req.entheogenId
+    let id = req.entheogenId;
     tribe
     .save()
-    .then(function(err, tribe) {
-      res.send('tribe created');
-      })
-      .then(entheogen => {
-        entheogen.tribes.push(tribe)
-        entheogen.save();
+    // .then(function(err, tribe) {
+    //   res.send('tribe created');
+    //   })
+    .then(() => {
+        return Entheogen.findOne({ id: id });
+      }).then(entheogen => {
+        entheogen.tribes.unshift(tribe)
+        entheogen.save()
         res.json(entheogen)
       }).catch(err => {
         console.log(err.message);
