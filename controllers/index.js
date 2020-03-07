@@ -12,10 +12,11 @@ router.use('/entheogens', entheogenRoutes);
 router.use('/auth', authRoutes);
 
 // all routes for tribes
-router.use('entheogens/:entheogenID/tribe', function(req, res, next) {
+router.use('/entheogens/:entheogenID/tribe', function(req, res, next) {
     req.entheogenID = req.params.entheogenID;
     next()
 }, tribeRoutes);
+
 // entheogenRoutes.use('./:entheogenID/', function(req, res, next) {
 //     req.entheogenID = req.params.entheogenID;
 // }, tribeRoutes);

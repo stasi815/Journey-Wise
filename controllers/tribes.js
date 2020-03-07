@@ -5,6 +5,7 @@ const User = require('../models/user');
 const Tribe = require('../models/tribe')
 
 const router = express.Router({ mergeParams: true });
+
 // GET /api/tribe
 router.get('/', (req, res) => {
   const currentUser = req.user;
@@ -23,12 +24,12 @@ router.get('/', (req, res) => {
 })
 
 // POST new tribe.
-router.post('/:entheogenId', (req,res) => {
+router.post('/new', (req,res) => {
   if (!req.user) {
     res.send({ err:"Must be logged in" })
   } else {
     const tribe = new Tribe(req.body);
-    tribe.entheogens = req.entheogenId
+    tribe.entheogen = req.entheogenId
     tribe
     .save()
     .then(function(err, tribe) {
@@ -46,7 +47,6 @@ router.post('/:entheogenId', (req,res) => {
 
 
 //GET one tribe
-
 router.get("/:id", (req, res) => {
   if (!req.user) {
     res.send({ err: 'Must be logged in' })
