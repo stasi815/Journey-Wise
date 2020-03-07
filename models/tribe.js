@@ -7,7 +7,7 @@ const TribeSchema = new Schema({
   updatedAt: { type: Date },
   name: { type: String },
   region: { type: String},
-  entheogen: [{ type: mongoose.Schema.Types.ObjectId, ref: "Entheogen" }],
+  entheogen: { type: mongoose.Schema.Types.ObjectId, ref: "Entheogen" },
 });
 
 TribeSchema.pre('save', function(next) {

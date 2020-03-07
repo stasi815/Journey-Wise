@@ -51,7 +51,7 @@ router.post('/login', (req, res) => {
 
             // Set a cookie and response
             // res.cookie("jwttoken", token, { maxAge: 900000, httpOnly: true });
-            res.json({'jwttoken': token})
+            res.json({'token': token})
         });
     })
         .catch(err => {
@@ -61,7 +61,7 @@ router.post('/login', (req, res) => {
 
 // Logout
 router.get('/logout', (req, res) => {
-    res.clearCookie('jwttoken');
+    res.clearCookie('token');
     res.redirect('/');
 });
 

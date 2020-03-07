@@ -64,7 +64,6 @@ router.get("/:id", (req, res) => {
 });
 
 // UPDATE one tribe
-
 router.put("/:id", (req, res) => {
   if (!req.user) {
     res.send({ err: 'Must be logged in' })
