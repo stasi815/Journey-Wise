@@ -23,18 +23,19 @@ router.get('/', (req, res) => {
 })
 
 // POST new tribe.
-router.post('/', (req,res) => {
+router.post('/:entheogenId', (req,res) => {
   if (!req.user) {
     res.send({ err:"Must be logged in" })
   } else {
     const tribe = new Tribe(req.body);
+    tribe.entheogens = req.entheogenId
     tribe
     .save()
     .then(function(err, tribe) {
       res.send('tribe created');
       })
       .then(entheogen => {
-        entheogen.push(tribe)
+        entheogen.tribes.push(tribe)
         entheogen.save();
         res.json(entheogen)
       }).catch(err => {
