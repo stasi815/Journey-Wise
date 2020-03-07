@@ -8,7 +8,7 @@ This API allows authenticated users to access and post much needed information a
 Entheogens are defined as chemical substances, usually from plants, that produce non-ordinary states of consciousness upon ingestion for religious or spiritual purposes. These substances are sometimes referred to as "psychedelics" as well as "sacred plant medicines." Outdated research and experimentation from the 1950s, 60s, and 70s comprises a considerable amount of what both scientists and the general public think they know about the potential risks of entheogenic/psychedelic  substance use. Unfortunately, this body of knowledge includes studies that wouldn’t meet today’s scientific standards and many stem from urban legends as well as sensational, unsubstantiated news stories. Sacred plant medicines are regarded as highly beneficial to many indigenous cultures throughout the world and psychedelics are used to enhance people’s experience of their own consciousness and awareness. Do to the stigmatization and marginalization of individuals and groups who use these substances, many people use them in uninformed, risky, and dangerous ways because of their fear of judgement and intolerance. This api provides valuable information about these substances, including dosages and applications in order create a healing culture of acceptance in mainstream culture around the potentially beneficial nature of use of these substances and indigenous healing modalities.
 
 
-## Installation
+## Installation for local hosting
 
 To install this API, clone the repo, open terminal and run this command in that directory.
 
@@ -22,6 +22,8 @@ Then run:
 npm start
 ```
 
+If using on localhost:3000 - replace the `https://journeywise-amg.herokuapp.com` in the following instructions with `localhost:3000`
+
 # How to Make Requests Using Postman
 
 Postman:
@@ -34,6 +36,8 @@ Postman is a very powerful HTTP client that is used for testing, documenting and
 4- Add the appropriate values into the data keys in the Body to CREATE or UPDATE a resource
 5- Enjoy!
 
+## Entheogen resource: 
+
 ## Get all entheogens
 
 Send a GET request to URL `https://journeywise-amg.herokuapp.com/entheogens/` to get a list of all entheogens.
@@ -42,7 +46,7 @@ Data will look lke:
 ```json
 [
     {
-        "tribes": [],
+        "tribes": [{'tribeObjectId'}],
         "name": "Mushrooms",
         "plant source": "Psilocybe cubensis",
         "psychoactiveChemical": "psilocybin",
@@ -84,7 +88,7 @@ Data will look like:
 
 ## Add an entheogen
 
-Send a POST request to URL `https://journeywise-amg.herokuapp.com/entheogens/` with the key-value pairs in the Body:
+Send a POST request to URL `https://journeywise-amg.herokuapp.com/entheogens/new` with the key-value pairs in the Body:
 
 ```
 name: string,
@@ -92,6 +96,18 @@ plantSource: string,
 psychoactiveChemical: string,
 dosage: string,
 healingApplications: string,
+```
+
+## Edit entheogen's info
+
+Send a PUT request to `https://journeywise-amg.herokuapp.com/entheogens/ID_HERE/put` with the updates that you'd like to make to the following data fields in the Body:
+
+```
+name: string,
+plantSource: string,
+psychoactiveChemical: string,
+dosage: string,
+healingApplications: string
 ```
 
 ## Remove an entheogen
@@ -103,19 +119,10 @@ Your response will be:
 entheogen deleted
 ```
 
-## Edit entheogen's info
+## Tribe resource: 
 
-Send a PUT request to `https://journeywise-amg.herokuapp.com/entheogens/ID_HERE/put` with the updates that you'd like to make to the following data fields:
+## Get all tribes associated with specific entheogen
 
-```
-name: string,
-plantSource: string,
-psychoactiveChemical: string,
-dosage: string,
-healingApplications: string
-```
-
-## Get all tribes
 Send a GET request to URL `https://journeywise-amg.herokuapp.com/entheogens/entheogenID_HERE/tribe` to get a list of all tribes.
 
 Data will look lke:
@@ -144,7 +151,7 @@ Data will look lke:
     }
 ]
 ```
-## Add a tribe
+## Add a tribe to an entheogen
 
 Send a POST request to URL `https://journeywise-amg.herokuapp.com/entheogens/entheogenID_HERE/tribe/new` with the key-value pairs in the Body:
 
@@ -154,6 +161,7 @@ region: string,
 ```
 
 ## Get one tribe
+
 Send a GET request to URL `https://journeywise-amg.herokuapp.com/entheogens/entheogenID_HERE/tribe/tribeID_HERE` to get one tribe.
 
 Data will look lke:
@@ -208,7 +216,3 @@ Use these fields in the Body with these data with your unique token in the Heade
 username: string,
 password: password
 ```
-
-## Logout
-
-Send a GET request to `https://journeywise-amg.herokuapp.com/auth/logout`
